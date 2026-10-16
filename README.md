@@ -120,7 +120,6 @@ helm upgrade --install argocd argo-cd --repo https://argoproj.github.io/argo-hel
 kubectl apply -f argocd/application.yaml     # after setting repoURL
 ```
 
-The GitHub username is already set to `Swaim-Sahay` in `helm/readinglist/values.yaml` and `argocd/application.yaml`; change it if you fork the repo.
 
 ## Observability
 
@@ -136,14 +135,4 @@ kubectl port-forward -n monitoring svc/kube-prometheus-stack-grafana 3001:80   #
 
 The chart's `ServiceMonitor` makes Prometheus scrape the backend's `/metrics`. The "Reading List API" dashboard shows request rate, p95 latency, 5xx rate and requests by status.
 
-## Security notes
 
-- Both images run as non-root users; Trivy gates every build.
-- `.env`, state files and `terraform.tfvars` are git-ignored. No credentials are committed.
-- The Postgres password in `values.yaml` and the Grafana `admin/admin` login are demo defaults — use a secret manager/sealed secrets for anything real.
-
-## Known limitations
-
-- Single-replica Postgres on a PVC (no HA/backups).
-- Single NAT gateway to save cost (not highly available).
-- Ingress uses the controller's load balancer hostname unless `ingress.host` is set.
