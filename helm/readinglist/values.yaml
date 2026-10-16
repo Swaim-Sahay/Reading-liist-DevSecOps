@@ -1,0 +1,30 @@
+backend:
+  image:
+    repository: ghcr.io/swaim-sahay/reading-list-devsecops-backend
+    tag: "4873159ac733cc147741939abb53c33509270098"
+  replicas: 2
+  port: 8000
+
+frontend:
+  image:
+    repository: ghcr.io/swaim-sahay/reading-list-devsecops-frontend
+    tag: "4873159ac733cc147741939abb53c33509270098"
+  replicas: 2
+  port: 8080
+
+postgres:
+  image: postgres:16-alpine
+  user: readinglist
+  password: change-me-in-real-deployments
+  database: readinglist
+  storage: 5Gi
+
+ingress:
+  enabled: true
+  className: nginx
+  host: ""
+
+monitoring:
+  serviceMonitor:
+    enabled: true
+    release: kube-prometheus-stack
