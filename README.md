@@ -136,3 +136,5 @@ kubectl port-forward -n monitoring svc/kube-prometheus-stack-grafana 3001:80   #
 The chart's `ServiceMonitor` makes Prometheus scrape the backend's `/metrics`. The "Reading List API" dashboard shows request rate, p95 latency, 5xx rate and requests by status.
 
 
+## video link 
+https://youtu.be/dbaNBPJIayU?si=1B3etBAtx6CsdH8y
